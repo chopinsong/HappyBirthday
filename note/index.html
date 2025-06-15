@@ -3,39 +3,48 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>我的笔记</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Microsoft YaHei', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', sans-serif;
+            -webkit-text-size-adjust: 100%;
         }
         .container {
             display: flex;
             height: 100vh;
+            flex-direction: column;
         }
         .sidebar {
-            width: 300px;
+            width: 100%;
+            height: 40vh;
             background-color: #f5f5f5;
-            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .content {
             flex: 1;
+            height: 60vh;
         }
         .note-list {
-            padding: 15px;
+            padding: 10px;
         }
         .note-item {
-            padding: 10px;
-            margin-bottom: 5px;
+            padding: 12px 15px;
+            margin-bottom: 8px;
             background-color: #fff;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            font-size: 16px;
+            min-height: 44px;
+            box-sizing: border-box;
         }
-        .note-item:hover {
+        .note-item:active {
             background-color: #e9e9e9;
         }
         .note-item.active {
@@ -47,14 +56,26 @@
             height: 100%;
             border: none;
         }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+            .sidebar {
+                width: 300px;
+                height: 100vh;
+                border-right: 1px solid #ddd;
+                border-bottom: none;
+            }
+            .content {
+                height: 100vh;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
-            <div class="note-list" id="noteList">
-                <!-- 笔记列表将通过JS动态生成 -->
-            </div>
+            <div class="note-list" id="noteList"></div>
         </div>
         <div class="content">
             <iframe id="contentFrame" src="about:blank"></iframe>
@@ -74,22 +95,20 @@
             const noteItem = document.createElement('div');
             noteItem.className = 'note-item';
             noteItem.textContent = note.title;
-            noteItem.addEventListener('click', () => {
-                // 移除所有active类
+            noteItem.addEventListener('click', function() {
                 document.querySelectorAll('.note-item').forEach(item => {
                     item.classList.remove('active');
                 });
-                // 添加active类
-                noteItem.classList.add('active');
-                // 加载笔记内容
+                this.classList.add('active');
                 document.getElementById('contentFrame').src = note.content;
             });
+            noteItem.style.touchAction = 'manipulation';
             noteList.appendChild(noteItem);
         });
 
         // 默认加载第一篇笔记
         if (notes.length > 0) {
-            document.querySelector('.note-item').click();
+            noteList.firstChild.click();
         }
     </script>
 </body>
