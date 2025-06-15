@@ -336,6 +336,12 @@ document.getElementById('startButton').addEventListener('click', () => {
   }
 })
 
+document.getElementById('noteButton').addEventListener('click', () => {
+  if (audio) {
+    window.location.href = '/HappyBirthday/note/'
+  }
+})
+
 playPauseButton.addEventListener('click', () => {
   if (audio) {
     togglePlay(!isPlaying)
