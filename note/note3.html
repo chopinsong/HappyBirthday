@@ -1,0 +1,48 @@
+Java基础学习大纲
+
+<section class="theory">
+    <h2>一、语言基础</h2>
+    <ul>
+        <li>开发环境配置（JDK+IDE）</li>
+        <li>基本数据类型与变量</li>
+        <li>运算符与表达式</li>
+        <li>流程控制结构</li>
+    </ul>
+</section>
+
+<section class="case">
+    <h2>基础案例</h2>
+    <pre><code>// 温度转换案例
+
+public class TempConverter { public static void main(String[] args) { double fahrenheit = 98.6; double celsius = (fahrenheit - 32) * 5/9; System.out.println(fahrenheit + "℉ = " + celsius + "℃"); } }
+
+<section class="theory">
+    <h2>二、面向对象</h2>
+    <ul>
+        <li>类与对象的关系</li>
+        <li>三大特性：封装/继承/多态</li>
+        <li>接口与抽象类</li>
+    </ul>
+</section>
+
+<section class="case">
+    <h2>OOP案例</h2>
+    <pre><code>// 银行账户类
+
+public class BankAccount { private String owner; private double balance;
+
+public void deposit(double amount) {
+    balance += amount;
+}
+// 其他方法...
+
+}
+
+<section class="theory">
+    <h2>三、高级特性</h2>
+    <ul>
+        <li>异常处理机制</li>
+        <li>集合框架体系</li>
+        <li>文件IO操作</li>
+    </ul>
+</section>
