@@ -339,7 +339,7 @@ document.getElementById('startButton').addEventListener('click', () => {
 document.getElementById('noteButton').addEventListener('click', () => {
   if (audio) {
 	  console.log(window.location.href)
-    window.location.href = '/note/'
+    window.location.href = 'http://note.zhoufang.xyz'
   }
 })
 
